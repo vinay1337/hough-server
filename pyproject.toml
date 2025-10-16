@@ -1,21 +1,27 @@
-[project]
-name = "hough-server"
-version = "0.1.0"
-description = ""
-authors = [
-    {name = "Vinay Janardhanam",email = "vjanard@gmail.com"}
-]
-readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-]
-
-
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 
 [dependency-groups]
 dev = [
-    "pre-commit (>=4.3.0,<5.0.0)",
+  "pre-commit (>=4.3.0,<5.0.0)",
 ]
+
+[project]
+authors = [
+  {email = "vjanard@gmail.com", name = "Vinay Janardhanam"},
+]
+dependencies = [
+]
+description = ""
+name = "hough-server"
+readme = "README.md"
+requires-python = ">=3.11"
+version = "0.1.0"
+
+[tool.tomlsort]
+all = true
+ignore_case = true
+in_place = true
+trailing_comma_inline_array = true
+overrides."tool.poetry.dependencies".first = ["python"]
