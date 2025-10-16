@@ -20,6 +20,25 @@ readme = "README.md"
 requires-python = ">=3.11"
 version = "0.1.0"
 
+[tool.mypy]
+check_untyped_defs = true # Still type‑check bodies of functions without annotations
+disallow_untyped_calls = false # Allow calls to un-annotated functions for now
+disallow_untyped_defs = false # Don't require every function/method to have full annotations for now
+enable_error_code = ["redundant-expr", "truthy-bool", "truthy-function", "unreachable"] # Extra lints: dead code, truthiness mistakes, etc.
+explicit_package_bases = true # Each package root must have an __init__.py (no implicit namespace pkgs)
+follow_imports = "normal" # Type‑check project modules; use stubs-only mode for external libs
+ignore_missing_imports = true # Do not complain when a dependency has no type stubs for now
+mypy_path = "$MYPY_CONFIG_FILE_DIR/stubs" # Additional search path for local .pyi stub files
+platform = "linux" # Pretend we’re running on Linux for platform‑specific narrowing
+python_version = "3.11" # Use Python 3.11 features and stdlib typing
+show_column_numbers = true # Include column numbers in error output
+show_error_codes = true # Append codes like [arg-type] to messages
+strict_optional = true # `None` only fits `Optional[...]` (no implicit nullability)
+warn_no_return = true # Warn if a non‑None function might exit without `return`
+warn_redundant_casts = true # Flag casts that don’t actually change the type
+warn_return_any = true # Warn when a function annotated to return concrete type can return `Any`
+warn_unused_ignores = true # Tell you when `# type: ignore` is no longer necessary
+
 [tool.ruff]
 line-length = 120
 output-format = "grouped"
