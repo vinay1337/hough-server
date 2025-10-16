@@ -55,3 +55,11 @@ repos:
         always_run: True
         verbose: True
         stages: ["post-checkout", "post-merge", "post-rewrite"]
+
+      # Run mypy locally to reuse cache
+      - id: mypy
+        name: Run mypy
+        language: system
+        types_or: ["python", "pyi"]
+        entry: poetry run mypy
+        require_serial: True
