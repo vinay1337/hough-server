@@ -19,6 +19,37 @@ readme = "README.md"
 requires-python = ">=3.11"
 version = "0.1.0"
 
+[tool.ruff]
+line-length = 120
+output-format = "grouped"
+target-version = "py311"
+
+[tool.ruff.format]
+indent-style = "space"
+line-ending = "lf"
+quote-style = "double"
+
+[tool.ruff.lint]
+ignore = [
+  "B007", # Allow unused loop variables without leading underscore
+  "B008", # Allow function calls in argument defaults (used in FastAPI)
+  "B019", # Allow lru_cache on methods
+  "D10", # Allow missing docstrings
+  "D200", # Allow one-line docstrings that don't fit on one line
+  "D202", # Allow blank lines after function docstring
+  "D4", # Ignore pedantic docstring rules
+  "E501", # Ignore line length violations
+  "E741", # Allow ambiguous variable names
+  "UP038", # Don't require X | Y instead of (X, Y) in isinstance
+]
+select = ["B", "D", "E", "F", "I", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"] # Ignore unused import in __init__.py files
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [tool.tomlsort]
 all = true
 ignore_case = true
