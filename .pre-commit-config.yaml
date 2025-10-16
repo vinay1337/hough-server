@@ -29,6 +29,18 @@ repos:
       - id: ruff-format
         types_or: ["python", "pyi"]
 
+  # nbqa hooks for applying ruff to Jupyter notebooks
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.1
+    hooks:
+      - id: nbqa-ruff-check
+        name: ruff check notebooks
+        args: ["--fix", "--exit-non-zero-on-fix"]
+        files: \.ipynb$
+      - id: nbqa-ruff-format
+        name: ruff format notebooks
+        files: \.ipynb$
+
   - repo: https://github.com/pappasam/toml-sort/
     rev: v0.24.2
     hooks:
@@ -62,4 +74,12 @@ repos:
         language: system
         types_or: ["python", "pyi"]
         entry: poetry run mypy
+        require_serial: True
+
+      # Run mypy on notebooks using nbqa locally to reuse cache
+      - id: nbqa-mypy
+        name: Run mypy on notebooks
+        language: system
+        files: \.ipynb$
+        entry: poetry run nbqa mypy
         require_serial: True
